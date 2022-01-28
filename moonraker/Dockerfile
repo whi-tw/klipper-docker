@@ -28,8 +28,9 @@ COPY --from=build-venv /opt/venv ./venv
 
 RUN mkdir run cfg gcode db log
 RUN groupadd moonraker --gid 1000 \
+    && groupadd gpio --gid 997 \
     && useradd moonraker --uid 1000 --gid moonraker \
-    && usermod moonraker --append --groups dialout \
+    && usermod moonraker --append --groups dialout,gpio \
     && chown -R moonraker:moonraker /opt/*
 
 ## Start Moonraker
