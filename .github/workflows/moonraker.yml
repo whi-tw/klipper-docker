@@ -1,4 +1,4 @@
-name: "Image: klipper"
+name: "Image: moonraker"
 
 on:
   workflow_dispatch:
@@ -6,10 +6,10 @@ on:
     branches:
       - main
     paths:
-      - "klipper/upstream/**"
+      - "moonraker/upstream/**"
 
 jobs:
   build:
     uses: ./.github/workflows/build-image.yml
     with:
-      app: klipper
+      app: moonraker
