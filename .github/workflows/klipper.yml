@@ -3,10 +3,8 @@ name: "Image: klipper"
 on:
   workflow_dispatch:
   push:
-    branches:
-      - main
     paths:
-      - "klipper/upstream/**"
+      - "klipper/**"
 
 jobs:
   build:

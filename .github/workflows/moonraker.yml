@@ -3,10 +3,8 @@ name: "Image: moonraker"
 on:
   workflow_dispatch:
   push:
-    branches:
-      - main
     paths:
-      - "moonraker/upstream/**"
+      - "moonraker/**"
 
 jobs:
   build:
