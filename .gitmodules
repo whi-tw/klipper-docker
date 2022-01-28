@@ -1,0 +1,6 @@
+[submodule "upstream/EtteGit/EnragedRabbitProject"]
+path = upstream/EtteGit/EnragedRabbitProject
+url = https://github.com/EtteGit/EnragedRabbitProject
+[submodule "upstream/Klipper3d/klipper"]
+path = upstream/Klipper3d/klipper
+url = https://github.com/klipper3d/klipper
