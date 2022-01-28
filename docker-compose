@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+docker-compose -f docker-compose.volumes.yml -f docker-compose.yml ${@}

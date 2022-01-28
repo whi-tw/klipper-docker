@@ -1,0 +1,27 @@
+x-base-service: &base-service
+  restart: unless-stopped
+  logging:
+    driver: none
+
+version: "3.9"
+
+services:
+  klipper:
+    <<: *base-service
+    container_name: klipper
+    image: ghcr.io/whi-tw/klipper:latest
+    privileged: true
+    volumes:
+      - /dev:/dev
+
+  moonraker:
+    <<: *base-service
+    container_name: moonraker
+    image: ghcr.io/whi-tw/moonraker:latest
+    depends_on:
+      - klipper
+    volumes:
+    - moonraker-db:/opt/db
+
+volumes:
+  moonraker-db:

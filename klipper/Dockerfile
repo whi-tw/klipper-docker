@@ -24,6 +24,6 @@ RUN groupadd klipper --gid 1000 \
     && chown -R klipper:klipper /opt/*
 
 USER klipper
-VOLUME ["/opt/run", "/opt/cfg", "/opt/gcode"]
+VOLUME ["/opt/run", "/opt/cfg", "/opt/gcode", "/opt/log"]
 ENTRYPOINT ["/opt/venv/bin/python", "klipper/klippy/klippy.py"]
-CMD ["-a", "run/klipper.sock", "cfg/printer.cfg"]
+CMD ["-a", "run/klipper.sock", "-l", "log/klippy.log", "cfg/printer.cfg"]

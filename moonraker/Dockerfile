@@ -35,6 +35,6 @@ RUN groupadd moonraker --gid 1000 \
 ## Start Moonraker
 USER moonraker
 EXPOSE 7125
-VOLUME ["/opt/run", "/opt/cfg", "/opt/gcode", "/opt/db"]
+VOLUME ["/opt/run", "/opt/cfg", "/opt/gcode", "/opt/db", "/opt/log"]
 ENTRYPOINT ["/opt/venv/bin/python", "moonraker/moonraker/moonraker.py"]
-CMD ["-c", "cfg/moonraker.cfg"]
+CMD ["-c", "cfg/moonraker.cfg", "-l", "log/moonraker.log"]
