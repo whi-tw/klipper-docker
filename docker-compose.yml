@@ -19,13 +19,14 @@ services:
     <<: *base-service
     container_name: moonraker
     image: ghcr.io/whi-tw/moonraker:main
-    privileged: true
     depends_on:
       - klipper
       - traefik
     volumes:
-      - /dev:/dev
       - moonraker-db:/opt/db
+      - /var/run/docker.sock:/var/run/docker.sock:rw
+    devices:
+      - "/dev/gpiochip0:/dev/gpiochip0"
     labels:
       - "traefik.enable=true"
       - "traefik.http.services.moonraker.loadbalancer.server.port=7125"

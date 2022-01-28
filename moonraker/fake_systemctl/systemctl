@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+sudo /opt/fake_systemctl/venv/bin/python /opt/fake_systemctl/fake_systemctl.py ${@}
