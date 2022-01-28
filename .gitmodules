@@ -1,6 +1,9 @@
-[submodule "upstream/EtteGit/EnragedRabbitProject"]
-path = upstream/EtteGit/EnragedRabbitProject
-url = https://github.com/EtteGit/EnragedRabbitProject
-[submodule "upstream/Klipper3d/klipper"]
-path = upstream/Klipper3d/klipper
-url = https://github.com/klipper3d/klipper
+[submodule "moonraker/upstream/Arksine/moonraker"]
+	path = moonraker/upstream/Arksine/moonraker
+	url = https://github.com/Arksine/moonraker
+[submodule "klipper/upstream/Klipper3d/klipper"]
+	path = klipper/upstream/Klipper3d/klipper
+	url = https://github.com/klipper3d/klipper
+[submodule "klipper/upstream/EtteGit/EnragedRabbitProject"]
+	path = klipper/upstream/EtteGit/EnragedRabbitProject
+	url = https://github.com/EtteGit/EnragedRabbitProject
