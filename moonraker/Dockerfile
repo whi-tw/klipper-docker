@@ -1,4 +1,4 @@
-FROM python:3 as build-venv
+FROM python:3.9 as build-venv
 
 WORKDIR /opt
 
@@ -7,7 +7,7 @@ COPY upstream/Arksine/moonraker moonraker
 RUN python -m venv venv \
     && venv/bin/pip install -r moonraker/scripts/moonraker-requirements.txt
 
-FROM python:3-slim as run
+FROM python:3.9-slim as run
 
 RUN apt update \
     && apt install -y \

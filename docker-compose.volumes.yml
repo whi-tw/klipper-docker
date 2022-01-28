@@ -1,11 +1,12 @@
 x-base-volumes: &base-volumes
   - run:/opt/run
-  - gcode:/opt/gcode
   - log:/opt/log
   - /home/pi/printer_config:/opt/cfg
 
 services:
   klipper:
+    volumes: *base-volumes
+  moonraker:
     volumes: *base-volumes
 
 volumes:
@@ -13,7 +14,6 @@ volumes:
     driver_opts:
       type: tmpfs
       device: tmpfs
-  gcode:
   log:
     driver_opts:
       type: tmpfs

@@ -1,7 +1,7 @@
 x-base-service: &base-service
   restart: unless-stopped
-  logging:
-    driver: none
+  # logging:
+  #   driver: none
 
 version: "3.9"
 
@@ -13,15 +13,52 @@ services:
     privileged: true
     volumes:
       - /dev:/dev
+      - gcode:/opt/gcode
 
   moonraker:
     <<: *base-service
     container_name: moonraker
     image: ghcr.io/whi-tw/moonraker:main
+    privileged: true
     depends_on:
       - klipper
+      - traefik
     volumes:
-    - moonraker-db:/opt/db
+      - /dev:/dev
+      - moonraker-db:/opt/db
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.services.moonraker.loadbalancer.server.port=7125"
+      - "traefik.http.routers.moonraker.rule=PathPrefix(`/websocket`,`/printer`,`/api`,`/access`,`/machine`,`/server`)"
+      - "traefik.http.routers.moonraker.entrypoints=web"
 
+  traefik:
+    image: traefik:v2.6
+    container_name: traefik
+    hostname: traefik
+    command:
+      - --accesslog
+      - --providers.docker=true
+      - --providers.docker.exposedbydefault=false
+      - --entrypoints.web.address=:80
+    ports:
+      - "80:80"
+    restart: unless-stopped
+    volumes:
+        - "/var/run/docker.sock:/var/run/docker.sock:ro"
+
+  fluidd:
+    image: cadriel/fluidd:latest
+    container_name: fluidd
+    restart: unless-stopped
+    depends_on:
+      - moonraker
+      - traefik
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.services.fluidd.loadbalancer.server.port=80"
+      - "traefik.http.routers.fluidd.rule=PathPrefix(`/`)"
+      - "traefik.http.routers.fluidd.entrypoints=web"
 volumes:
+  gcode:
   moonraker-db:
