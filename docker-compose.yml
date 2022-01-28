@@ -9,7 +9,7 @@ services:
   klipper:
     <<: *base-service
     container_name: klipper
-    image: ghcr.io/whi-tw/klipper:latest
+    image: ghcr.io/whi-tw/klipper:main
     privileged: true
     volumes:
       - /dev:/dev
@@ -17,7 +17,7 @@ services:
   moonraker:
     <<: *base-service
     container_name: moonraker
-    image: ghcr.io/whi-tw/moonraker:latest
+    image: ghcr.io/whi-tw/moonraker:main
     depends_on:
       - klipper
     volumes:

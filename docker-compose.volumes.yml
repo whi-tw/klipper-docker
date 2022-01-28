@@ -1,6 +1,6 @@
 x-base-volumes: &base-volumes
   - run:/opt/run
-  - gcode:/opt/gcode]
+  - gcode:/opt/gcode
   - log:/opt/log
   - /home/pi/printer_config:/opt/cfg
 

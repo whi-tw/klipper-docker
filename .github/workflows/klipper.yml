@@ -3,11 +3,13 @@ name: "Image: klipper"
 on:
   workflow_dispatch:
   push:
+    branches:
+      - main
     paths:
       - "klipper/**"
 
 jobs:
   build:
-    uses: ./.github/workflows/build-image.yml
+    uses: ./.github/workflows/build-image-base.yml
     with:
       app: klipper

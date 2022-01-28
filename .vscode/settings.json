@@ -1,0 +1,7 @@
+{
+  "yaml.schemas": {
+    "https://json.schemastore.org/github-action.json": [
+      "file:///home/tnwhitwell/workspace/github.com/whi-tw/klipper-docker/.github/actions/*.yml"
+    ]
+  }
+}

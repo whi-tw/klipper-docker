@@ -3,11 +3,13 @@ name: "Image: moonraker"
 on:
   workflow_dispatch:
   push:
+    branches:
+      - main
     paths:
       - "moonraker/**"
 
 jobs:
   build:
-    uses: ./.github/workflows/build-image.yml
+    uses: ./.github/workflows/build-image-base.yml
     with:
       app: moonraker
