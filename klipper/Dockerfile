@@ -6,6 +6,7 @@ WORKDIR /opt
 
 COPY upstream/Klipper3d/klipper klipper
 COPY ["upstream/EtteGit/EnragedRabbitProject/Klipper_Files/Extra module/ercf.py", "klipper/klippy/extras/"]
+COPY extra_files/gcode_shell_command.py klipper/klippy/extras/
 
 RUN --mount=type=cache,id=venv-wheel,sharing=locked,target=/root/.cache/pip virtualenv -p python2 venv \
     && venv/bin/pip install -r klipper/scripts/klippy-requirements.txt \
