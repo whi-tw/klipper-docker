@@ -31,11 +31,6 @@ jobs:
             type=ref,event=branch
             type=ref,event=pr
             type=raw,value=latest,enable=${{ endsWith(github.ref, github.event.repository.default_branch) }}
-      - uses: int128/docker-build-cache-config-action@v1
-        id: cache
-        with:
-          image: ghcr.io/${{ github.repository }}/cache
-          tag-prefix: ${{ inputs.app }}
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
         with:
