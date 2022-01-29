@@ -35,14 +35,22 @@ def cli():
     pass
 
 
-@cli.command()
-def list_units():
+context = dict(
+    ignore_unknown_options=True,
+    help_option_names=[],
+)
+
+
+@cli.command(context_settings=context)
+@click.argument("args", nargs=-1, type=click.UNPROCESSED)
+def list_units(args):
     for service in docker_services:
         print(app_status(service, list=True))
 
 
-@cli.command()
-def show():
+@cli.command(context_settings=context)
+@click.argument("args", nargs=-1, type=click.UNPROCESSED)
+def show(args):
     for service in docker_services:
         print(app_status(service, show=True))
 

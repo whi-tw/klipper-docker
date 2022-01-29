@@ -34,6 +34,7 @@ services:
       - "traefik.http.routers.moonraker.entrypoints=web"
 
   traefik:
+    restart: unless-stopped
     image: traefik:v2.6
     container_name: traefik
     hostname: traefik
@@ -44,14 +45,13 @@ services:
       - --entrypoints.web.address=:80
     ports:
       - "80:80"
-    restart: unless-stopped
     volumes:
         - "/var/run/docker.sock:/var/run/docker.sock:ro"
 
   fluidd:
+    <<: *base-service
     image: cadriel/fluidd:latest
     container_name: fluidd
-    restart: unless-stopped
     depends_on:
       - moonraker
       - traefik
