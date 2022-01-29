@@ -7,3 +7,6 @@
 [submodule "klipper/upstream/EtteGit/EnragedRabbitProject"]
 	path = klipper/upstream/EtteGit/EnragedRabbitProject
 	url = https://github.com/EtteGit/EnragedRabbitProject
+[submodule "ustreamer/upstream/pikvm/ustreamer"]
+	path = ustreamer/upstream/pikvm/ustreamer
+	url = https://github.com/pikvm/ustreamer

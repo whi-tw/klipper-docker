@@ -1,0 +1,16 @@
+name: "Image: ustreamer"
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - "ustreamer/**"
+      - ".github/**"
+
+jobs:
+  build:
+    uses: ./.github/workflows/build-image-base.yml
+    with:
+      app: ustreamer
