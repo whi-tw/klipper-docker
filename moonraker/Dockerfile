@@ -5,7 +5,7 @@ WORKDIR /opt
 
 COPY upstream/Arksine/moonraker moonraker
 
-RUN --mount=type=cache,mode=0755,target=/root/.cache/pip python -m venv venv \
+RUN --mount=type=cache,id=venv-wheel,sharing=locked,target=/root/.cache/pip python -m venv venv \
     && venv/bin/pip install -r moonraker/scripts/moonraker-requirements.txt
 
 FROM python:3.9 as build-fake-systemd-venv
@@ -13,12 +13,12 @@ FROM python:3.9 as build-fake-systemd-venv
 WORKDIR /opt
 COPY fake_systemctl fake_systemctl
 WORKDIR /opt/fake_systemctl
-RUN --mount=type=cache,mode=0755,target=/root/.cache/pip python -m venv venv \
+RUN --mount=type=cache,id=systemctl-wheel,sharing=locked,target=/root/.cache/pip python -m venv venv \
     && venv/bin/pip install -r requirements.txt
 
 FROM python:3.9-slim as run
 
-RUN apt update \
+RUN --mount=type=cache,id=apt,sharing=locked,target=/var/cache/apt/ apt update \
     && apt install -y \
     libopenjp2-7 \
     python3-libgpiod \
@@ -29,8 +29,7 @@ RUN apt update \
     libsodium-dev \
     zlib1g-dev \
     iproute2 \
-    sudo \
-    && apt clean
+    sudo
 
 WORKDIR /opt
 COPY --from=build-venv /opt/moonraker ./moonraker
