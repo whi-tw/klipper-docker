@@ -1,10 +1,11 @@
+# syntax = docker/dockerfile:experimental
 FROM python:3.9 as build-venv
 
 WORKDIR /opt
 
 COPY upstream/Arksine/moonraker moonraker
 
-RUN python -m venv venv \
+RUN --mount=type=cache,mode=0755,target=/root/.cache/pip python -m venv venv \
     && venv/bin/pip install -r moonraker/scripts/moonraker-requirements.txt
 
 FROM python:3.9 as build-fake-systemd-venv
@@ -12,7 +13,7 @@ FROM python:3.9 as build-fake-systemd-venv
 WORKDIR /opt
 COPY fake_systemctl fake_systemctl
 WORKDIR /opt/fake_systemctl
-RUN python -m venv venv \
+RUN --mount=type=cache,mode=0755,target=/root/.cache/pip python -m venv venv \
     && venv/bin/pip install -r requirements.txt
 
 FROM python:3.9-slim as run

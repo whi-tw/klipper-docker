@@ -1,3 +1,4 @@
+# syntax = docker/dockerfile:experimental
 FROM python:2 as build-venv
 
 WORKDIR /opt
@@ -5,7 +6,7 @@ WORKDIR /opt
 COPY upstream/Klipper3d/klipper klipper
 COPY ["upstream/EtteGit/EnragedRabbitProject/Klipper_Files/Extra module/ercf.py", "klipper/klippy/extras/"]
 
-RUN virtualenv -p python2 venv \
+RUN --mount=type=cache,mode=0755,target=/root/.cache/pip virtualenv -p python2 venv \
     && venv/bin/pip install -r klipper/scripts/klippy-requirements.txt \
     && venv/bin/python -m compileall klipper/klippy \
     && venv/bin/python klipper/klippy/chelper/__init__.py
