@@ -77,7 +77,7 @@ services:
       - "--device=/dev/webcam"
       - "--resolution=1280x960"
       - "--format=YUYV"
-      - "--desired-fps=30"
+      - "--desired-fps=10"
     labels:
       - "traefik.enable=true"
       - "traefik.http.services.ustreamer.loadbalancer.server.port=8080"
