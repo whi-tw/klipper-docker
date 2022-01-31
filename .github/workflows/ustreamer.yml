@@ -7,7 +7,8 @@ on:
       - main
     paths:
       - "ustreamer/**"
-      - ".github/**"
+      - ".github/workflows/ustreamer.yml"
+      - ".github/workflows/build-image-base.yml"
 
 jobs:
   build:
