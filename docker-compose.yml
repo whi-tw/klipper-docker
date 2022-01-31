@@ -14,6 +14,7 @@ services:
     volumes:
       - /dev:/dev
       - gcode:/opt/gcode
+      - /home/pi/printer_vars:/opt/vars
 
   moonraker:
     <<: *base-service
@@ -60,6 +61,29 @@ services:
       - "traefik.http.services.fluidd.loadbalancer.server.port=80"
       - "traefik.http.routers.fluidd.rule=PathPrefix(`/`)"
       - "traefik.http.routers.fluidd.entrypoints=web"
+
+  ustreamer:
+    <<: *base-service
+    image: ghcr.io/whi-tw/klipper-docker/ustreamer:main
+    container_name: ustreamer
+    depends_on:
+      - traefik
+    devices:
+      - /dev/video0:/dev/webcam
+    command:
+      - "--host=0.0.0.0"
+      - "--port=8080"
+      - "--slowdown"
+      - "--device=/dev/webcam"
+      - "--resolution=1280x960"
+      - "--format=YUYV"
+      - "--desired-fps=30"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.services.ustreamer.loadbalancer.server.port=8080"
+      - "traefik.http.routers.ustreamer.rule=PathPrefix(`/stream`)"
+      - "traefik.http.routers.ustreamer.entrypoints=web"
+
 volumes:
   gcode:
   moonraker-db:
