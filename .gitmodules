@@ -10,3 +10,6 @@
 [submodule "ustreamer/upstream/pikvm/ustreamer"]
 	path = ustreamer/upstream/pikvm/ustreamer
 	url = https://github.com/pikvm/ustreamer
+[submodule "pi-image/packer-builder-arm"]
+	path = pi-image/packer-builder-arm
+	url = https://github.com/mkaczanowski/packer-builder-arm

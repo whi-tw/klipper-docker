@@ -1,0 +1,46 @@
+{
+    "source": {
+        "arm": {
+            "ubuntu": {
+                "file_urls": [],
+                "file_checksum_url": "",
+                "file_checksum_type": "",
+                "file_target_extension": "",
+                "file_unarchive_cmd": [],
+                "image_build_method": "",
+                "image_path": "",
+                "image_size": "",
+                "image_type": "",
+                "image_partitions": [
+                    {
+                        "name": "",
+                        "type": "",
+                        "start_sector": "",
+                        "filesystem": "",
+                        "size": "",
+                        "mountpoint": ""
+                    },
+                    {
+                        "name": "",
+                        "type": "",
+                        "start_sector": "",
+                        "filesystem": "",
+                        "size": "",
+                        "mountpoint": ""
+                    }
+                ],
+                "image_chroot_env": [],
+                "qemu_binary_source_path": "",
+                "qemu_binary_destination_path": ""
+            }
+        }
+    },
+    "build": {
+        "sources": [],
+        "provisioner": {
+            "shell": {
+                "inline": []
+            }
+        }
+    }
+}
