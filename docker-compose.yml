@@ -1,7 +1,5 @@
 x-base-service: &base-service
   restart: unless-stopped
-  logging:
-    driver: none
 
 version: "3.9"
 
@@ -35,7 +33,7 @@ services:
       - "traefik.http.routers.moonraker.entrypoints=web"
 
   traefik:
-    restart: unless-stopped
+    <<: *base-service
     image: traefik:v2.6
     container_name: traefik
     hostname: traefik
