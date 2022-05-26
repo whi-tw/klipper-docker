@@ -1,2 +1,8 @@
 #!/usr/bin/env bash
-docker-compose -f docker-compose.volumes.yml -f docker-compose.yml ${@}
+COMPOSE_CMD="docker-compose"
+which docker-compose &>/dev/null || COMPOSE_CMD="docker compose"
+if [ "$EUID" -ne 0 ]; then
+    COMPOSE_CMD="sudo ${COMPOSE_CMD}"
+fi
+
+${COMPOSE_CMD} -f docker-compose.volumes.yml -f docker-compose.yml "${@}"
