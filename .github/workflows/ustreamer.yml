@@ -12,6 +12,9 @@ on:
 
 jobs:
   build:
-    uses: ./.github/workflows/build-image-base.yml
+    uses: whi-tw/actions/.github/workflows/reusable-docker-build-basic-image.yml@main
     with:
-      app: ustreamer
+      image_name: ustreamer
+      dockerfile: ./ustreamer/Dockerfile
+      build_context: ./ustreamer
+      platforms: linux/arm64,linux/arm/v7
