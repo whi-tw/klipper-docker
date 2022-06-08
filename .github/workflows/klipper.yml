@@ -11,7 +11,7 @@ on:
 
 jobs:
   build:
-    uses: whi-tw/actions/.github/workflows/reusable-docker-build-basic-image.yml@main
+    uses: whi-tw/actions/.github/workflows/reusable-docker-build-basic-image.yml@69f1d5957b54951e648252fcd8342982999013fb
     with:
       image_name: klipper
       dockerfile: ./klipper/Dockerfile
