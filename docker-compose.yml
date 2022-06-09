@@ -1,3 +1,4 @@
+---
 x-base-service: &base-service
   restart: unless-stopped
 
