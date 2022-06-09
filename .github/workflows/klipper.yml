@@ -2,8 +2,11 @@
 name: "Image: klipper"
 
 on:
-  workflow_dispatch:
   push:
+    paths:
+      - "klipper/**"
+      - ".github/workflows/klipper.yml"
+  pull_request:
     branches:
       - main
     paths:
@@ -18,3 +21,4 @@ jobs:
       dockerfile: ./klipper/Dockerfile
       build_context: ./klipper
       platforms: linux/arm64,linux/arm/v7
+      push: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}

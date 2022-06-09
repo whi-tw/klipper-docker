@@ -2,14 +2,16 @@
 name: "Image: ustreamer"
 
 on:
-  workflow_dispatch:
   push:
+    paths:
+      - "ustreamer/**"
+      - ".github/workflows/ustreamer.yml"
+  pull_request:
     branches:
       - main
     paths:
       - "ustreamer/**"
       - ".github/workflows/ustreamer.yml"
-      - ".github/workflows/build-image-base.yml"
 
 jobs:
   build:
@@ -19,3 +21,4 @@ jobs:
       dockerfile: ./ustreamer/Dockerfile
       build_context: ./ustreamer
       platforms: linux/arm64,linux/arm/v7
+      push: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}

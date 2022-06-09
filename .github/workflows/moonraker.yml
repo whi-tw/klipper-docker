@@ -2,8 +2,11 @@
 name: "Image: moonraker"
 
 on:
-  workflow_dispatch:
   push:
+    paths:
+      - "moonraker/**"
+      - ".github/workflows/moonraker.yml"
+  pull_request:
     branches:
       - main
     paths:
@@ -18,3 +21,4 @@ jobs:
       dockerfile: ./moonraker/Dockerfile
       build_context: ./moonraker
       platforms: linux/arm64,linux/arm/v7
+      push: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
