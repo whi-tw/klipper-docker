@@ -1,10 +1,7 @@
 #!/usr/bin/python3
-import subprocess
-import sys
+import click
 import docker
 from docker.models.containers import Container
-import click
-
 
 docker_client = docker.from_env()
 
@@ -21,7 +18,7 @@ def app_status(app_name, list=False, show=False):
         pass
 
     if list:
-        return f'{app_name}.service                                        loaded    {"active" if running else "dead"}   {"running" if running else "exited"}  {app_name.title()}'
+        return f'{app_name}.service                                        loaded    {"active" if running else "dead"}   {"running" if running else "exited"}  {app_name.title()}'  # noqa: E501
     elif show:
         return (
             f'{"active" if running else "dead"}\n{"running" if running else "exited"}\n'
@@ -70,7 +67,7 @@ def stop(app_name):
     try:
         container: Container = docker_client.containers.get(app_name)
         container.stop()
-    except:
+    except BaseException:
         pass
 
 
@@ -80,7 +77,7 @@ def start(app_name):
     try:
         container: Container = docker_client.containers.get(app_name)
         container.start()
-    except:
+    except BaseException:
         pass
 
 
@@ -90,7 +87,7 @@ def restart(app_name):
     try:
         container: Container = docker_client.containers.get(app_name)
         container.restart()
-    except:
+    except BaseException:
         pass
 
 
