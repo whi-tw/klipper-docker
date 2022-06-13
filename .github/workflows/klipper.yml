@@ -15,10 +15,12 @@ on:
 
 jobs:
   build:
-    uses: whi-tw/actions/.github/workflows/reusable-docker-build-basic-image.yml@main
+    uses: whi-tw/actions/.github/workflows/reusable-docker-build-basic-image.yml@cas_sign_images
     with:
       image_name: klipper
       dockerfile: ./klipper/Dockerfile
       build_context: ./klipper
-      platforms: linux/arm64,linux/arm/v7
+      platforms: ["linux/arm64", "linux/arm/v7"]
       push: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+    secrets:
+      CAS_API_KEY: ${{ secrets.CAS_API_KEY }}
